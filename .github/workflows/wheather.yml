@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send Message to Telegram
-        run: curl -X POST "https://api.telegram.org/bot7769452868:AAEoPkgoke2VCpolo9SCRUg7UldH7afzdQc/sendMessage" -d "chat_id=7939343755&text=A simple test message"
+        run: curl -X POST "https://api.telegram.org/bot"${{ secrets.TELEGRAM_BOT_TOKEN }}"/sendMessage" -d "chat_id="${{ secrets.TELEGRAM_CHAT_ID }}"&text=A simple test message"
