@@ -1,20 +1,27 @@
-name: telegram message
-on: [push]
-jobs:
+name: Telegram Notifier
 
-  build:
-    name: Build
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send_message:
     runs-on: ubuntu-latest
     steps:
-      - name: send telegram message on push
-        uses: appleboy/telegram-action@master
+      - name: Send Message to Telegram
+        uses: TheTechNexus/telegram_notifier@v1
         with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
-            
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+          telegram_bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          telegram_chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+          message: 'Hello from GitHub Actions!'
+
+  send_image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Image to Telegram
+        uses: TheTechNexus/telegram_notifier@v1
+        with:
+          telegram_bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          telegram_chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+          imageUrl: 'https://example.com/image.jpg'
