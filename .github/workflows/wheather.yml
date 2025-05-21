@@ -13,7 +13,7 @@ jobs:
     - name: Get weather data
       id: weather
       run: |
-        CITY="Granada"
+        CITY="Madrid"
         API_KEY="${{ secrets.tiempo }}"  # consigue una gratis en openweathermap.org
         WEATHER=$(curl -s "https://api.openweathermap.org/data/2.5/weather?q=$CITY&appid=$API_KEY&units=metric")
         TEMP=$(echo $WEATHER | jq '.main.temp')
