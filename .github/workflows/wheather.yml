@@ -14,7 +14,7 @@ jobs:
       id: weather
       run: |
         CITY="Granada"
-        API_KEY="your_openweather_api_key"  # consigue una gratis en openweathermap.org
+        API_KEY="${{ secrets.tiempo }}"  # consigue una gratis en openweathermap.org
         WEATHER=$(curl -s "https://api.openweathermap.org/data/2.5/weather?q=$CITY&appid=$API_KEY&units=metric")
         TEMP=$(echo $WEATHER | jq '.main.temp')
         DESC=$(echo $WEATHER | jq -r '.weather[0].description')
